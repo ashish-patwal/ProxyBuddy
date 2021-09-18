@@ -24,10 +24,8 @@ def submitAttendance(session, headers):
     with RequestURL(CLNDRURL, session, headers) as soup:
         for link in Links(soup):
             # submitAttendance(link, session, headers)
-            # print(link)
-            threading.Thread(
-                target=markAttendance, args=(link, session, headers)
-            ).start()
+            markAttendance(link, session, headers)
+            print(link)
 
 
 def markAttendance(targetURL, session, headers):
