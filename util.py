@@ -9,6 +9,7 @@ import threading
 
 from const import CLNDRURL, ATTENDANCEURL_REG, MARKATTENDANCEURL
 
+print("PROXY BUDDY IS ONLINE BITCH")
 
 def Links(soup):
     return (
