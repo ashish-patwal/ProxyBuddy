@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
-from twilio import sendMessage
+from message import sendMessage
 from context import RequestURL
+from const import getTime
 from requests import codes
 import re
 import threading
@@ -41,7 +42,7 @@ def markAttendance(targetURL, session, headers):
             target = soup.find("a", text="Submit attendance")["href"]
         except TypeError:
             message = "NO Submission Link"
-            sendMessage(message)
+            print(message)
         else:
             for k, v in parse_qs(urlparse(target).query).items():
                 payload[k] = "".join(v)

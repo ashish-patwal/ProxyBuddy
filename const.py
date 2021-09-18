@@ -1,3 +1,9 @@
+import os;
+from datetime import datetime
+from pytz import timezone
+password = os.environ['password']
+username = os.environ['username']
+
 URL = "http://45.116.207.79/moodle/login/index.php"
 
 CLNDRURL = "http://45.116.207.79/moodle/calendar/view.php?view=upcoming"
@@ -14,6 +20,11 @@ headers = {
 
 params = {
     "logintoken": "Leave this as it is",
-    "username": "username",
-    "password": "password",
+    "username": username,
+    "password": password,
 }
+
+
+def getTime()->str:
+    return datetime.now(timezone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S.%f')
+   

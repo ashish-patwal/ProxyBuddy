@@ -3,7 +3,7 @@ import sys
 import time
 import argparse
 import requests
-from const import URL, params, headers
+from const import URL, params, headers, getTime
 from util import submitAttendance
 
 while True:
@@ -18,6 +18,6 @@ while True:
         else:
             headers.update(session.cookies.get_dict())
             submitAttendance(session, headers)
-            print("done")
+            print(getTime())
 
         time.sleep(1800)
