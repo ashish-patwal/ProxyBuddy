@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
+from twilio import sendMessage
 from context import RequestURL
 from requests import codes
 import re
@@ -36,12 +37,11 @@ def markAttendance(targetURL, session, headers):
     }
 
     with RequestURL(targetURL, session, headers) as soup:
-        print(soup.title.string)
         try:
             target = soup.find("a", text="Submit attendance")["href"]
         except TypeError:
-            print("NO Submission Link")
-            print("-" * 20)
+            message = "NO Submission Link"
+            sendMessage(message)
         else:
             for k, v in parse_qs(urlparse(target).query).items():
                 payload[k] = "".join(v)
@@ -56,7 +56,9 @@ def markAttendance(targetURL, session, headers):
                     MARKATTENDANCEURL, verify=False, headers=headers, data=payload
                 )
                 if r.status_code == codes["ok"]:
+                    print(soup.title.string)
                     print("Submitted Attendance successfully")
+                    message = f"{soup.title.string} : Submitted Attendance Successfully"
                 else:
-                    print("Error happend : " + r.status_code)
-                print("-" * 20)
+                    message = f"Error happend : {r.status_code}"
+                sendMessage(message)
