@@ -1,10 +1,11 @@
+import keep_alive
 from bs4 import BeautifulSoup
 import time
 import requests
 from const import URL, params, headers, getTime
 from util import submitAttendance
 
-while True:
+def run():
     with requests.Session() as session:
         html = session.get(URL, verify=False, headers=headers)
         soup = BeautifulSoup(html.content, "html5lib")
@@ -19,5 +20,8 @@ while True:
             print(getTime())
             submitAttendance(session, headers)
             
+keep_alive.keep_alive()
 
-        time.sleep(1800)
+while True:
+  run()
+  time.sleep(1800)
