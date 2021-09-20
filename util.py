@@ -1,22 +1,20 @@
-from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 from message import sendMessage
 from context import RequestURL
 from const import getTime
 from requests import codes
 import re
-import threading
 
 from const import CLNDRURL, ATTENDANCEURL_REG, MARKATTENDANCEURL
 
 print("PROXY BUDDY IS ONLINE BITCH")
 
 def Links(soup):
-    return (
+    return [
         data.attrs["href"]
         for data in soup.find("div", {"class": "maincalendar"}).find_all(
             "a", href=re.compile(ATTENDANCEURL_REG)
-        )
+        ]
     )
 
 
@@ -25,7 +23,6 @@ def submitAttendance(session, headers):
         for link in Links(soup):
             # submitAttendance(link, session, headers)
             markAttendance(link, session, headers)
-            print(link)
 
 
 def markAttendance(targetURL, session, headers):
