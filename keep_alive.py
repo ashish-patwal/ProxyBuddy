@@ -1,13 +1,15 @@
-from flask import Flask
+from flask import Flask, send_file, request
 from threading import Thread
 
 app = Flask('')
 
 
-@app.route('/')
+@app.route('/',methods = ['POST', 'GET'])
 def main():
-    return "PROXY BUDDY NEVER DIES"
-
+    if request.method == 'POST':
+      return send_file('./responce.xml')
+    else:
+      return "PROXY BUDDY NEVER DIES"
 
 def run():
     app.run(host="0.0.0.0", port=8080)
