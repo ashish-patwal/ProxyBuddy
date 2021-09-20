@@ -16,5 +16,3 @@ def sendMessage(message: str):
         body=message,
         to=phno,
     )
-
-    print(message.sid)
