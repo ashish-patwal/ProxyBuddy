@@ -14,8 +14,8 @@ def Links(soup):
         data.attrs["href"]
         for data in soup.find("div", {"class": "maincalendar"}).find_all(
             "a", href=re.compile(ATTENDANCEURL_REG)
-        ]
-    )
+        )
+    ]
 
 
 def submitAttendance(session, headers):
