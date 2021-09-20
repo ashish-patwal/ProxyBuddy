@@ -2,7 +2,7 @@ import os
 from twilio.rest import Client
 
 phno = os.environ['phno']
-msg_sid = os.environ['messaging_service_sid']
+twilioNum = os.environ['twilioNum']
 authtoken = os.environ['authtoken']
 acc_sid = os.environ['account_sid']
 
@@ -12,7 +12,7 @@ client = Client(account_sid, auth_token)
 
 def sendMessage(message: str):
     message = client.messages.create(
-        messaging_service_sid=msg_sid,
+        from_=twilioNum,
         body=message,
         to=phno,
     )
