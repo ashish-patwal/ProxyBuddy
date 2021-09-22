@@ -1,3 +1,3 @@
 ### My Proxy Buddy
 
-**takes my attendance without me worrying**
+**takes my attendance so that i don't have to**
