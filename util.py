@@ -55,7 +55,8 @@ def markAttendance(targetURL, session, headers):
                 if r.status_code == codes["ok"]:
                     print(soup.title.string)
                     print("Submitted Attendance successfully")
-                    message = f"{soup.title.string} : {getTime()} : Submitted Attendance Successfully"
+                    message = f"{soup.title.string} || {getTime()} ||Submitted Attendance Successfully"
                 else:
                     message = f"Error happend : {r.status_code}"
+                
                 sendMessage(message)
