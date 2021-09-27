@@ -19,7 +19,7 @@ def run():
             headers.update(session.cookies.get_dict())
             print(getTime())
             submitAttendance(session, headers)
-            
+
 keep_alive.keep_alive()
 
 while True:
